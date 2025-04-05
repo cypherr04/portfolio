@@ -12,7 +12,7 @@ export default function Skills() {
     },
     {
       title: "Stack",
-      skills: ["Next.js", "Supabase", "PostgreSQL"],
+      skills: ["Next.js", "Supabase", "PostgreSQL", "react","Express.js","Node.js"],
     },
     {
       title: t("Tools", "Outils"),
