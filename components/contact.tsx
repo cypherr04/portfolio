@@ -34,9 +34,9 @@ export default function Contact() {
             className="w-full justify-between hover:bg-[hsl(var(--secondary))] border-[hsl(var(--border)_/_0.5)]"
             asChild
           >
-            <a href="mailto:saifbensassi1234@gmail.com">
+            <a href="mailto:seyfeddinbensassi@gmail.com">
               <Mail className="mr-2 h-5 w-5" />
-              <span>saifbensassi1234@gmail.com</span>
+              <span>seyfeddinbensassi@gmail.com</span>
               <span className="sr-only">Email</span>
             </a>
           </Button>
