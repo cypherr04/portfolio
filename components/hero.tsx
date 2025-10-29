@@ -1,29 +1,37 @@
-"use client"
+"use client";
 
-import { useLanguage } from "./language-provider"
-import { Button } from "@/components/ui/button"
-import { ArrowDown } from "lucide-react"
+import { useLanguage } from "./language-provider";
+import { Button } from "@/components/ui/button";
+import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
 
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById("about")
+    const aboutSection = document.getElementById("about");
     if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" })
+      aboutSection.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center pt-16 text-center">
-      <h1 className="text-4xl md:text-6xl font-bold mb-6">Saifeddin Bensassi</h1>
+      <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        Seyfeddin BENSASSI
+      </h1>
       <h2 className="text-2xl md:text-3xl text-[hsl(var(--primary))] font-semibold mb-8">
         {t("Full-Stack Developer", "Développeur Full-Stack")}
       </h2>
-      <p className="text-lg md:text-xl max-w-2xl mb-12 text-[hsl(var(--foreground)_/_0.8)]">
+      <p className="text-lg md:text-xl max-w-2xl mb-6 text-[hsl(var(--foreground)_/_0.8)]">
         {t(
           "I build scalable, content-driven web platforms with a clean UI and strong backend.",
-          "Je crée des plateformes web évolutives et centrées sur le contenu avec une interface soignée et un backend solide.",
+          "Je crée des plateformes web évolutives et centrées sur le contenu avec une interface soignée et un backend solide."
+        )}
+      </p>
+      <p className="text-lg md:text-xl max-w-2xl mb-12 text-[hsl(var(--foreground)_/_0.6)] italic">
+        {t(
+          `"Learn from every mistake, master every challenge."`,
+          "« Apprendre de chaque erreur, maîtriser chaque défi. »"
         )}
       </p>
       <Button
@@ -34,6 +42,5 @@ export default function Hero() {
         <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
       </Button>
     </section>
-  )
+  );
 }
-
