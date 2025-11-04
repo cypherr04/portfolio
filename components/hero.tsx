@@ -13,14 +13,15 @@ export default function Hero() {
       const navbar = document.querySelector("nav");
       const navbarHeight = navbar ? navbar.clientHeight : 0;
       const buffer = 24; // Same padding as navbar component
-      
+
       // Calculate position accounting for navbar height and scroll position
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navbarHeight - buffer;
-      
+
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
