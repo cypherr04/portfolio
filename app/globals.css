@@ -64,3 +64,58 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Skills slider styles */
+.skill-slider {
+  overflow: hidden;
+  /* ensure the track can be exactly twice the visible width when duplicated */
+  position: relative;
+}
+.skill-track {
+  display: inline-flex;
+  gap: 1.5rem;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Move left by 50% (we duplicate items) to create infinite loop */
+  /* use CSS variable for easy tuning */
+  --scroll-duration: 16s;
+  animation: scroll-left var(--scroll-duration) linear infinite;
+}
+.skill-slider:hover .skill-track {
+  animation-play-state: paused;
+}
+.skill-item {
+  min-width: 8rem; /* ensures consistent item width */
+}
+
+/* Color adjustments for SVG logos on dark (purple) background */
+.skill-item img {
+  transition: filter 200ms ease, opacity 200ms ease;
+}
+.dark .skill-item img {
+  /* Turn original black SVGs into light gray suitable for purple bg */
+  filter: invert(1) saturate(0) brightness(1.2);
+  opacity: 0.9;
+}
+
+/* Company logo adjustments */
+.company-logo {
+  transition: filter 200ms ease, opacity 200ms ease;
+  opacity: 0.95;
+}
+.dark .company-logo {
+  /* Use same inversion as skill logos for consistency */
+  filter: invert(1) saturate(0) brightness(1.2);
+  opacity: 0.9;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

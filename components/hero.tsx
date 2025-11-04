@@ -8,16 +8,27 @@ export default function Hero() {
   const { t } = useLanguage();
 
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById("about");
+    if (element) {
+      const navbar = document.querySelector("nav");
+      const navbarHeight = navbar ? navbar.clientHeight : 0;
+      const buffer = 24; // Same padding as navbar component
+      
+      // Calculate position accounting for navbar height and scroll position
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight - buffer;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center pt-16 text-center">
       <h1 className="text-4xl md:text-6xl font-bold mb-6">
-        Seyfeddin BENSASSI
+        Sayfeddine BENSASSI
       </h1>
       <h2 className="text-2xl md:text-3xl text-[hsl(var(--primary))] font-semibold mb-8">
         {t("Full-Stack Developer", "Développeur Full-Stack")}

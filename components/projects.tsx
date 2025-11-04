@@ -107,7 +107,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-12">
       <h2 className="text-3xl font-bold mb-8 text-center">
         {t("Projects", "Projets")}
       </h2>

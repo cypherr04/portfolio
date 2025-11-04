@@ -1,41 +1,54 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useLanguage } from "./language-provider"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { useState, useEffect } from "react";
+import { useLanguage } from "./language-provider";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const { language, toggleLanguage, t } = useLanguage()
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { language, toggleLanguage, t } = useLanguage();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+      setIsScrolled(window.scrollY > 10);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
+    const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const navbar = document.querySelector("nav");
+      const navbarHeight = navbar ? navbar.clientHeight : 0;
+      const buffer = 24; // Increased padding to ensure headers are clearly visible
+      
+      // Calculate position accounting for navbar height and scroll position
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight - buffer;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-[hsl(var(--background)_/_0.8)] backdrop-blur-md shadow-md" : "bg-transparent"
+        isScrolled
+          ? "bg-[hsl(var(--background)_/_0.8)] backdrop-blur-md shadow-md"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="text-xl font-bold">Seyfeddin BENSASSI</div>
+          <div className="text-xl font-bold">Sayfeddine BENSASSI</div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -46,22 +59,16 @@ export default function Navbar() {
               {t("About", "À propos")}
             </button>
             <button
+              onClick={() => scrollToSection("skills")}
+              className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors"
+            >
+              {t("My Toolbox", "Ma boîte à outils")}
+            </button>
+            <button
               onClick={() => scrollToSection("projects")}
               className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors"
             >
               {t("Projects", "Projets")}
-            </button>
-            <button
-              onClick={() => scrollToSection("skills")}
-              className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors"
-            >
-              {t("Skills", "Compétences")}
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors"
-            >
-              {t("Contact", "Contact")}
             </button>
             <Button
               onClick={toggleLanguage}
@@ -103,28 +110,21 @@ export default function Navbar() {
                 {t("About", "À propos")}
               </button>
               <button
+                onClick={() => scrollToSection("skills")}
+                className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors py-2"
+              >
+                {t("My Toolbox", "Ma boîte à outils")}
+              </button>
+              <button
                 onClick={() => scrollToSection("projects")}
                 className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors py-2"
               >
                 {t("Projects", "Projets")}
-              </button>
-              <button
-                onClick={() => scrollToSection("skills")}
-                className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors py-2"
-              >
-                {t("Skills", "Compétences")}
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-[hsl(var(--foreground)_/_0.7)] hover:text-[hsl(var(--foreground))] transition-colors py-2"
-              >
-                {t("Contact", "Contact")}
               </button>
             </div>
           </div>
         )}
       </div>
     </nav>
-  )
+  );
 }
-
