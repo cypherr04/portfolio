@@ -29,7 +29,7 @@ export default function Hero() {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center pt-16 text-center">
       <h1 className="text-4xl md:text-6xl font-bold mb-6">
-        Sayfeddine BENSASSI
+        Sayf BENSASSI
       </h1>
       <h2 className="text-2xl md:text-3xl text-[hsl(var(--primary))] font-semibold mb-8">
         {t("Full-Stack Developer", "Développeur Full-Stack")}

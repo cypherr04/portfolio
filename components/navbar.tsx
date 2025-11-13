@@ -49,7 +49,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="text-xl font-bold">Sayfeddine BENSASSI</div>
+          <div className="text-xl font-bold">Sayf BENSASSI</div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
